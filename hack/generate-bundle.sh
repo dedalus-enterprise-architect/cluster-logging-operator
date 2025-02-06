@@ -23,7 +23,7 @@ LABEL \\
     io.k8s.display-name="cluster-logging-operator bundle" \\
     io.k8s.description="bundle for the cluster-logging-operator" \\
     summary="This is the bundle for the cluster-logging-operator" \\
-    maintainer="AOS Logging <team-logging@redhat.com>"
+    maintainer="AOS Logging <team.ea@dedalus.eu>"
 EOF
 
 echo "validating bundle..."

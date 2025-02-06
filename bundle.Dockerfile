@@ -5,8 +5,8 @@ LABEL operators.operatorframework.io.bundle.mediatype.v1=registry+v1
 LABEL operators.operatorframework.io.bundle.manifests.v1=manifests/
 LABEL operators.operatorframework.io.bundle.metadata.v1=metadata/
 LABEL operators.operatorframework.io.bundle.package.v1=cluster-logging
-LABEL operators.operatorframework.io.bundle.channels.v1=stable,stable-5.9
-LABEL operators.operatorframework.io.bundle.channel.default.v1=stable
+LABEL operators.operatorframework.io.bundle.channels.v1=dedalus,dedalus-5.9
+LABEL operators.operatorframework.io.bundle.channel.default.v1=dedalus
 LABEL operators.operatorframework.io.metrics.builder=operator-sdk-unknown
 LABEL operators.operatorframework.io.metrics.mediatype.v1=metrics+v1
 LABEL operators.operatorframework.io.metrics.project_layout=go.kubebuilder.io/v3
@@ -26,4 +26,4 @@ LABEL \
     io.k8s.display-name="cluster-logging-operator bundle" \
     io.k8s.description="bundle for the cluster-logging-operator" \
     summary="This is the bundle for the cluster-logging-operator" \
-    maintainer="AOS Logging <team-logging@redhat.com>"
+    maintainer="AOS Logging <team.ea@dedalus.eu>"

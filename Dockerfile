@@ -1,8 +1,8 @@
 # Temporarily set this to internal golang-builder until UBI 9.5 is released with
 # a go-toolset base image providing go1.22
 #
-# FROM registry.redhat.io/ubi9/go-toolset:latest AS builder
-FROM registry.ci.openshift.org/ocp/builder:rhel-9-golang-1.22-openshift-4.17 as builder
+FROM registry.redhat.io/ubi9/go-toolset:latest AS builder
+# FROM registry.ci.openshift.org/ocp/builder:rhel-9-golang-1.22-openshift-4.17 as builder
 
 ENV REMOTE_SOURCES=${REMOTE_SOURCES:-.}
 ENV REMOTE_SOURCES_DIR=${REMOTE_SOURCES_DIR:-.}
@@ -19,6 +19,9 @@ COPY ${APP_DIR}/version ./version
 COPY ${APP_DIR}/cmd/main.go ./cmd/main.go
 COPY ${APP_DIR}/api ./api
 COPY ${APP_DIR}/internal ./internal
+# CPT
+COPY ${APP_DIR}/olm_deploy ./olm_deploy
+COPY ${APP_DIR}/.git ./.git
 
 USER 0
 RUN make build
@@ -57,7 +60,7 @@ LABEL \
         io.k8s.description="This is a component of OpenShift Container Platform that manages the lifecycle of the Aggregated logging stack." \
         io.openshift.tags="openshift,logging" \
         com.redhat.delivery.appregistry="false" \
-        maintainer="AOS Logging <team-logging@redhat.com>" \
+        maintainer="team.ea@dedalus.eu" \
         License="Apache-2.0" \
         name="openshift-logging/cluster-logging-rhel9-operator" \
         com.redhat.component="cluster-logging-operator-container" \

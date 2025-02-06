@@ -208,7 +208,7 @@ generate: $(GEN_TIMESTAMP)
 $(GEN_TIMESTAMP): $(shell find api -name '*.go')  $(OPERATOR_SDK) $(CONTROLLER_GEN) $(KUSTOMIZE) .target
 	@$(CONTROLLER_GEN) object paths="./api/..."
 	@$(CONTROLLER_GEN) crd:crdVersions=v1 rbac:roleName=clusterlogging-operator paths="./..." output:crd:artifacts:config=config/crd/bases
-	echo -e "package version\n\nvar Version = \"$(or $(CI_CONTAINER_VERSION),$(VERSION))\"" > version/version.go
+	echo "package version\n\nvar Version = \"$(or $(CI_CONTAINER_VERSION),$(VERSION))\"" > version/version.go
 	@$(MAKE) fmt
 	@touch $@
 
@@ -330,7 +330,7 @@ test-cluster:
 OPENSHIFT_VERSIONS?="v4.13-v4.16"
 # Generate bundle manifests and metadata, then validate generated files.
 BUNDLE_VERSION?=$(VERSION)
-CHANNEL=$(or $(filename $(OVERLAY)),stable)
+CHANNEL=$(or $(notdir $(OVERLAY)),stable)
 BUNDLE_CHANNELS := --channels=$(CHANNEL),$(CHANNEL)-${LOGGING_VERSION}
 BUNDLE_DEFAULT_CHANNEL := --default-channel=$(CHANNEL)
 BUNDLE_METADATA_OPTS ?= $(BUNDLE_CHANNELS) $(BUNDLE_DEFAULT_CHANNEL)
